@@ -46,7 +46,7 @@ public class PlayerAnimationController extends CreatureAnimationController<Playe
         Animation animation = new Animation("player-%s-right".formatted(action), spritesheet, false, false);
 
         add(animation);
-        add(flipAnimation(animation, "player-%s-left".formatted(action)));
+        add(flippedAnimation(animation, "player-%s-left".formatted(action),false));
     }
 
     @Override

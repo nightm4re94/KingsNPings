@@ -8,8 +8,8 @@ import de.gurkenlabs.litiengine.abilities.Ability;
 import de.gurkenlabs.litiengine.abilities.AbilityInfo;
 import de.gurkenlabs.litiengine.abilities.effects.Effect;
 import de.gurkenlabs.litiengine.abilities.effects.EffectApplication;
-import de.gurkenlabs.litiengine.abilities.effects.EffectTarget;
 import de.gurkenlabs.litiengine.abilities.effects.ForceEffect;
+import de.gurkenlabs.litiengine.abilities.targeting.ExecutingEntityTargetingStrategy;
 import de.gurkenlabs.litiengine.entities.*;
 import de.gurkenlabs.litiengine.graphics.RenderType;
 import de.gurkenlabs.litiengine.graphics.Spritesheet;
@@ -36,7 +36,7 @@ public class JumpAbility extends Ability {
 
     private static class JumpParticleEffect extends Effect {
         protected JumpParticleEffect(Ability ability) {
-            super(ability, EffectTarget.EXECUTINGENTITY);
+            super(new ExecutingEntityTargetingStrategy(), ability.getExecutor());
         }
 
         @Override
@@ -62,7 +62,7 @@ public class JumpAbility extends Ability {
     private static class JumpEffect extends ForceEffect {
 
         protected JumpEffect(Ability ability) {
-            super(ability, ability.getAttributes().value().get().intValue(), EffectTarget.EXECUTINGENTITY);
+            super(new ExecutingEntityTargetingStrategy(), ability.getExecutor(), ability.getAttributes().value().getValue(), ability.getAttributes().duration().getValue());
         }
 
 
@@ -86,10 +86,10 @@ public class JumpAbility extends Ability {
                     .environment()
                     .getCollisionBoxes()
                     .stream()
-                    .filter(x -> x.getBoundingBox().intersects(this.getAbility().getExecutor().getBoundingBox()))
+                    .filter(x -> x.getBoundingBox().intersects(getExecutingEntity().getBoundingBox()))
                     .findFirst()
                     .map(CollisionBox::getCollisionBox)
-                    .map(x -> x.getMaxY() <= this.getAbility().getExecutor().getCollisionBox().getMinY())
+                    .map(x -> x.getMaxY() <= getExecutingEntity().getCollisionBox().getMinY())
                     .orElse(false);
         }
     }

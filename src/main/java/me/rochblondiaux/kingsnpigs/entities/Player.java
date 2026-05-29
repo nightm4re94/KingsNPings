@@ -99,7 +99,7 @@ public class Player extends Creature implements IUpdateable {
     }
 
     @Override
-    protected IEntityAnimationController<?> createAnimationController() {
+    protected IEntityAnimationController<? extends Creature> createAnimationController() {
         return new PlayerAnimationController(this);
     }
 

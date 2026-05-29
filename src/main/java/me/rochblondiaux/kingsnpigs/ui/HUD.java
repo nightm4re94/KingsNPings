@@ -60,7 +60,7 @@ public class HUD extends GuiComponent implements IUpdateable {
         double x = Game.window().getResolution().getWidth() / 20;
         double y = Game.window().getResolution().getHeight() - Game.window().getResolution().getHeight() + 43;
 
-        for (int i = 0; i < Player.get().getHitPoints().get(); i++) {
+        for (int i = 0; i < Player.get().getHitPoints().getModifiedValue(); i++) {
             Spritesheet currentHeart = HEART_IDLE;
 
             ImageRenderer.renderScaled(g, currentHeart.getSprite(heartIdleAnimation.getCurrentKeyFrame().getSpriteIndex()), x + 20, y, 2);

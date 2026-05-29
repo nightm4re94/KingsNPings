@@ -21,8 +21,8 @@ public class Door extends Prop {
         super("door");
         this.doorState = State.CLOSED;
 
-        getHitPoints().setMaxBaseValue(3);
-        getHitPoints().setBaseValue(3);
+        getHitPoints().setMax(3);
+        getHitPoints().setValue(3);
     }
 
 

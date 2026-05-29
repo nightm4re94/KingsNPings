@@ -10,7 +10,7 @@ import de.gurkenlabs.litiengine.graphics.RenderType;
 public class Heart extends Collectible {
 
     public Heart() {
-        super("heart", player -> player.getHitPoints().setBaseValue(player.getHitPoints().getBase() + 1));
+        super("heart", player -> player.getHitPoints().setValue(player.getHitPoints().getValue() + 1));
         setWidth(14);
         setHeight(14);
     }
